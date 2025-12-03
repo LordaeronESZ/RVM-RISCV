@@ -22,17 +22,12 @@ use core::sync::atomic::{AtomicBool, Ordering};
 static INIT_OK: AtomicBool = AtomicBool::new(false);
 
 const LOGO: &str = r"
+ ______     ____  __       ____  ___ ____   ______     __
+|  _ \ \   / /  \/  |     |  _ \|_ _/ ___| / ___\ \   / /
+| |_) \ \ / /| |\/| |_____| |_) || |\___ \| |    \ \ / /
+|  _ < \ V / | |  | |_____|  _ < | | ___) | |___  \ V /
+|_| \_\ \_/  |_|  |_|     |_| \_\___|____/ \____|  \_/
 
-    RRRRRR  VV     VV MM    MM
-    RR   RR VV     VV MMM  MMM
-    RRRRRR   VV   VV  MM MM MM
-    RR  RR    VV VV   MM    MM
-    RR   RR    VVV    MM    MM
-     ___    ____    ___    ___
-    |__ \  / __ \  |__ \  |__ \
-    __/ / / / / /  __/ /  __/ /
-   / __/ / /_/ /  / __/  / __/
-  /____/ \____/  /____/ /____/
 ";
 
 fn clear_bss() {
@@ -50,7 +45,8 @@ pub fn init_ok() -> bool {
     INIT_OK.load(Ordering::SeqCst)
 }
 
-fn main() -> ! {
+#[no_mangle]
+pub extern "C" fn main() -> ! {
     clear_bss();
     arch::init_early();
     println!("{}", LOGO);

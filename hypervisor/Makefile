@@ -1,5 +1,5 @@
 # Arguments
-ARCH ?= x86_64
+ARCH ?= riscv64
 MODE ?= release
 LOG ?= warn
 
@@ -17,7 +17,7 @@ ifeq ($(MODE), release)
 endif
 
 # Binutils
-OBJDUMP := rust-objdump -d --print-imm-hex --x86-asm-syntax=intel
+OBJDUMP := rust-objdump -d --print-imm-hex --arch-name=$(ARCH)
 OBJCOPY := rust-objcopy --binary-architecture=$(ARCH)
 GDB := gdb-multiarch
 
@@ -25,11 +25,10 @@ GDB := gdb-multiarch
 qemu := qemu-system-$(ARCH)
 qemu_args := -nographic -m 128M
 
-qemu_args += -cpu host,+x2apic -accel kvm
-
-ifeq ($(ARCH), x86_64)
+ifeq ($(ARCH), riscv64)
   qemu_args += \
-    -machine q35 \
+    -machine virt \
+    -bios none \
     -serial mon:stdio \
     -kernel $(target_elf)
 endif
