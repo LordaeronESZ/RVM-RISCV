@@ -1,6 +1,8 @@
-# RVM-Tutorial
+# RVM-RISCV
 
-Let's write an x86 hypervisor in Rust from scratch!
+Let's write an riscv hypervisor in Rust from scratch!
+
+Adapted from: [RVM-Tutorial](https://github.com/equation314/RVM-Tutorial)
 
 ## Install Build Dependencies
 
@@ -16,21 +18,15 @@ $ cargo install cargo-binutils
 $ cd hypervisor
 $ make run [LOG=warn|info|debug|trace]
 ......
-Booting from ROM..
+ ______     ____  __       ____  ___ ____   ______     __
+|  _ \ \   / /  \/  |     |  _ \|_ _/ ___| / ___\ \   / /
+| |_) \ \ / /| |\/| |_____| |_) || |\___ \| |    \ \ / /
+|  _ < \ V / | |  | |_____|  _ < | | ___) | |___  \ V /
+|_| \_\ \_/  |_|  |_|     |_| \_\___|____/ \____|  \_/
 
-    RRRRRR  VV     VV MM    MM
-    RR   RR VV     VV MMM  MMM
-    RRRRRR   VV   VV  MM MM MM
-    RR  RR    VV VV   MM    MM
-    RR   RR    VVV    MM    MM
-     ___    ____    ___    ___
-    |__ \  / __ \  |__ \  |__ \
-    __/ / / / / /  __/ /  __/ /
-   / __/ / /_/ /  / __/  / __/
-  /____/ \____/  /____/ /____/
 
-arch = x86_64
+arch = riscv64
 build_mode = release
-log_level = info
+log_level = warn
 ......
 ```
