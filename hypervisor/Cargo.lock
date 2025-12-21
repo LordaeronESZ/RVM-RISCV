@@ -114,6 +114,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "rvm"
+version = "0.1.0"
+dependencies = [
+ "bit_field",
+ "bitflags",
+ "cfg-if",
+ "log",
+ "riscv",
+]
+
+[[package]]
 name = "rvm-hypervisor"
 version = "0.1.0"
 dependencies = [
@@ -124,6 +135,7 @@ dependencies = [
  "lazy_static",
  "log",
  "riscv",
+ "rvm",
  "spin 0.9.4",
 ]
 
