@@ -31,3 +31,36 @@ impl<H: RvmHal> HextRegion<H> {
         self.frame.start_paddr()
     }
 }
+
+bitflags! {
+    /// RISC-V Machine ISA flags
+    /// We only care about H-extension for now
+    pub struct MachineISAFlags: u64 {
+        /// Hypervisor extension
+        const H = 1 << 7;
+    }
+}
+
+/// Machine ISA in RISC-V Processor
+pub struct MachineISA;
+
+impl CsrReadWrite for MachineISA {
+    const CSR: Csr = Csr::MISA;
+}
+
+impl MachineISA {
+    pub fn read() -> MachineISAFlags {
+        MachineISAFlags::from_bits_truncate(unsafe {
+            Self::read_raw()
+        })
+    }
+
+    pub fn write(flags: MachineISAFlags) {
+        let old_value = unsafe { Self::read_raw() };
+        let reserved = old_value & !(MachineISAFlags::all().bits());
+        let new_value = reserved | flags.bits();
+        unsafe {
+            Self::write_raw(new_value);
+        }
+    }
+}

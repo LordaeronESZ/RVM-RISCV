@@ -1,14 +1,15 @@
 mod structs;
 
 use crate::arch::csr::Csr;
-use crate::arch::riscv64::hext::structs::HextRegion;
+use crate::arch::riscv64::hext::structs::{HextRegion, MachineISA, MachineISAFlags};
 use crate::error::{RvmError, RvmResult};
 use crate::hal::RvmHal;
 
 pub use self::HextPerCpuState as ArchPerCpuState;
 
 pub fn has_hardware_support() -> bool {
-    true
+    let has_hext = MachineISA::read().contains(MachineISAFlags::H);
+    has_hext
 }
 
 pub struct HextPerCpuState<H: RvmHal> {

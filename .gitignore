@@ -4,3 +4,4 @@ target
 rvm/Cargo.lock
 !hypervisor/Cargo.lock
 tags
+CLAUDE.md
