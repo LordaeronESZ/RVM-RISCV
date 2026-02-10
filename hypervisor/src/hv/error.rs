@@ -12,6 +12,7 @@ pub enum RvmError {
 /// A [`Result`] type with [`RvmError`] as the error type.
 pub type RvmResult<T = ()> = Result<T, RvmError>;
 
+#[macro_export]
 macro_rules! rvm_err_type {
     ($err:ident) => {{
         use $crate::hv::error::RvmError::*;
@@ -25,11 +26,12 @@ macro_rules! rvm_err_type {
     }};
 }
 
+#[macro_export]
 macro_rules! rvm_err {
     ($err:ident) => {
-        Err(rvm_err_type!($err))
+        Err($crate::rvm_err_type!($err))
     };
     ($err:ident, $msg:expr) => {
-        Err(rvm_err_type!($err, $msg))
+        Err($crate::rvm_err_type!($err, $msg))
     };
 }

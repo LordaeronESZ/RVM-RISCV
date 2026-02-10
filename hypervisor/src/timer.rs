@@ -1,6 +1,6 @@
 use core::time::Duration;
 
-use crate::arch::timer;
+use crate::riscv64::timer;
 
 pub type TimeValue = Duration;
 

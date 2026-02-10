@@ -3,7 +3,7 @@ use core::fmt::{self, Write};
 use log::{self, Level, LevelFilter, Log, Metadata, Record};
 use spin::Mutex;
 
-use crate::arch::uart;
+use crate::riscv64::uart;
 
 struct Stdout;
 

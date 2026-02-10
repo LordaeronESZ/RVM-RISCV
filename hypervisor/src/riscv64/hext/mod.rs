@@ -3,7 +3,8 @@ mod structs;
 
 pub use structs::{HextRegion, MachineISA, MachineISAFlags, PhysFrame};
 
-use crate::hv::error::RvmResult;
+use crate::hv::RvmResult;
+use crate::rvm_err;
 
 pub fn has_hardware_support() -> bool {
     MachineISA::read().contains(MachineISAFlags::H)

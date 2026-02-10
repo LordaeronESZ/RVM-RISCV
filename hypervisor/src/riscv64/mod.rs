@@ -5,6 +5,8 @@ pub mod timer;
 pub mod trap;
 pub mod uart;
 
+pub mod hext;
+
 
 pub fn init_early() {
     uart::init();

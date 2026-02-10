@@ -121,7 +121,6 @@ dependencies = [
  "bitflags",
  "bitmap-allocator",
  "buddy_system_allocator",
- "cfg-if",
  "lazy_static",
  "log",
  "riscv",

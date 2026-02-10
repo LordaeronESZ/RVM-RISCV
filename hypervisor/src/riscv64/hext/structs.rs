@@ -1,10 +1,11 @@
 use bit_field::BitField;
 use bitflags::bitflags;
 
-use crate::hv::hext::csr::{Csr, CsrReadWrite};
-use crate::hv::error::RvmResult;
+use crate::riscv64::hext::csr::{Csr, CsrReadWrite};
+use crate::hv::RvmResult;
 use crate::hv::HostPhysAddr;
 use crate::mm::frame;
+use crate::rvm_err_type;
 
 /// A 4K-sized contiguous physical memory page, it will deallocate the page
 /// automatically on drop.

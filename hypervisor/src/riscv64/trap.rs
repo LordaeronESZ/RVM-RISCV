@@ -7,8 +7,8 @@ use core::arch::asm;
 use core::arch::global_asm;
 use log::{info, warn};
 
-use crate::arch::instructions;
-use crate::arch::timer;
+use crate::riscv64::instructions;
+use crate::riscv64::timer;
 
 // Declare the trap handler assembly function
 extern "C" {

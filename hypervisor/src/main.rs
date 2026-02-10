@@ -9,7 +9,7 @@ extern crate log;
 #[macro_use]
 mod logging;
 
-mod arch;
+mod riscv64;
 mod config;
 mod hv;
 mod mm;
@@ -49,7 +49,7 @@ pub fn init_ok() -> bool {
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     clear_bss();
-    arch::init_early();
+    riscv64::init_early();
     println!("{}", LOGO);
     println!(
         "\
@@ -66,7 +66,7 @@ pub extern "C" fn main() -> ! {
     logging::init();
     info!("Logging is enabled.");
 
-    arch::init();
+    riscv64::init();
     mm::init();
     INIT_OK.store(true, Ordering::SeqCst);
     println!("Initialization completed.\n");
@@ -74,8 +74,8 @@ pub extern "C" fn main() -> ! {
     hv::run();
     println!("Run OK!");
 
-    arch::instructions::enable_irqs();
+    riscv64::instructions::enable_irqs();
     loop {
-        arch::instructions::wait_for_ints();
+        riscv64::instructions::wait_for_ints();
     }
 }

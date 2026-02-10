@@ -1,11 +1,8 @@
-#[macro_use]
-mod error;
-
-mod hext;
+pub mod error;
 
 pub use error::{RvmError, RvmResult};
 pub use crate::mm::{GuestPhysAddr, GuestVirtAddr, HostPhysAddr, HostVirtAddr};
-pub use hext::{HextPerCpuState, has_hardware_support};
+pub use crate::riscv64::hext::{HextPerCpuState, has_hardware_support};
 
 /// Host per-CPU states to run the guest.
 pub struct RvmPerCpu {
