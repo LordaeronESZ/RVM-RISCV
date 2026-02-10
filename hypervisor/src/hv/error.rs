@@ -13,23 +13,23 @@ pub enum RvmError {
 pub type RvmResult<T = ()> = Result<T, RvmError>;
 
 macro_rules! rvm_err_type {
-    ($err: ident) => {{
-        use $crate::error::RvmError::*;
+    ($err:ident) => {{
+        use $crate::hv::error::RvmError::*;
         warn!("[RvmError::{:?}]", $err);
         $err
     }};
-    ($err: ident, $msg: expr) => {{
-        use $crate::error::RvmError::*;
+    ($err:ident, $msg:expr) => {{
+        use $crate::hv::error::RvmError::*;
         warn!("[RvmError::{:?}] {}", $err, $msg);
         $err
     }};
 }
 
 macro_rules! rvm_err {
-    ($err: ident) => {
+    ($err:ident) => {
         Err(rvm_err_type!($err))
     };
-    ($err: ident, $msg: expr) => {
+    ($err:ident, $msg:expr) => {
         Err(rvm_err_type!($err, $msg))
     };
 }

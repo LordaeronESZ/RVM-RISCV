@@ -1,22 +1,19 @@
+mod csr;
 mod structs;
 
-use crate::arch::csr::Csr;
-use crate::arch::riscv64::hext::structs::{HextRegion, MachineISA, MachineISAFlags};
-use crate::error::{RvmError, RvmResult};
-use crate::hal::RvmHal;
+pub use structs::{HextRegion, MachineISA, MachineISAFlags, PhysFrame};
 
-pub use self::HextPerCpuState as ArchPerCpuState;
+use crate::hv::error::RvmResult;
 
 pub fn has_hardware_support() -> bool {
-    let has_hext = MachineISA::read().contains(MachineISAFlags::H);
-    has_hext
+    MachineISA::read().contains(MachineISAFlags::H)
 }
 
-pub struct HextPerCpuState<H: RvmHal> {
-    hext_region: HextRegion<H>,
+pub struct HextPerCpuState {
+    hext_region: HextRegion,
 }
 
-impl<H: RvmHal> HextPerCpuState<H> {
+impl HextPerCpuState {
     pub const fn new() -> Self {
         Self {
             hext_region: unsafe { HextRegion::uninit() },

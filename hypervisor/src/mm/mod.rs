@@ -5,6 +5,11 @@ pub mod frame;
 
 pub const PAGE_SIZE: usize = 0x1000;
 
+pub type GuestVirtAddr = usize;
+pub type GuestPhysAddr = usize;
+pub type HostVirtAddr = usize;
+pub type HostPhysAddr = usize;
+
 pub fn init_heap_early() {
     heap::init();
 }
