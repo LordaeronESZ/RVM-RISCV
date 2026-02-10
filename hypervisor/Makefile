@@ -11,7 +11,7 @@ export LOG
 target_elf := target/$(ARCH)/$(MODE)/rvm-hypervisor
 target_bin := $(target_elf).bin
 
-build_args := --target $(ARCH).json -Zbuild-std=core,alloc -Zbuild-std-features=compiler-builtins-mem
+build_args := --target $(ARCH).json -Zbuild-std=core,alloc -Zbuild-std-features=compiler-builtins-mem -Zjson-target-spec
 ifeq ($(MODE), release)
   build_args += --release
 endif

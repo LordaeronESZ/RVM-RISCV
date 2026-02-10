@@ -1,5 +1,4 @@
 #![no_std]
-#![feature(concat_idents)]
 
 #[macro_use]
 extern crate log;
