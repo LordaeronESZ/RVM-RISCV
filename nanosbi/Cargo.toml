@@ -1,0 +1,24 @@
+[package]
+name = "nanosbi"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "nanosbi"
+path = "src/main.rs"
+
+[dependencies]
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[profile.release]
+opt-level = "s"
+lto = true
+debug = false
+panic = "abort"
+
+[features]
+default = []
+test = []
